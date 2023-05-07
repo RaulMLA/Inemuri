@@ -1,0 +1,153 @@
+/* Inter font family. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
+
+
+/* Application colors. */
+:root {
+	--azul: #265cff;
+	--rojo: #ff2828;
+	--primario: #1e1e1e;
+	--secundario: #232323;
+	--auxiliar: #4d4d4d;
+	--resaltar: #ffffff;
+}
+
+* {
+	margin: 0rem;
+	padding: 0rem;
+	box-sizing: border-box;
+}
+
+html {
+	background-color: var(--primario);
+	color: var(--resaltar);
+	font-family: 'Inter', sans-serif;
+	height: 100%;
+}
+
+body {
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: 10% 10% auto 12%;
+	height: 100%;
+}
+
+
+
+
+
+/* Grid container styles. */
+#head {
+	grid-row: 1/2;
+	background-color: #1c52f5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#instrucciones {
+	grid-row: 2/4;
+	font-size: 1rem;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	margin: 2% 5% 2% 5%;
+}
+
+#info {
+	grid-row: 2/3;
+	font-size: 1.2rem;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	margin: 2% 5% 2% 5%;
+
+	transition: opacity 0.5s linear;
+}
+
+#map_display {
+	grid-row: 3/4;
+	border: 0.3rem solid var(--auxiliar);
+	border-radius: 1rem;
+	margin: 0 5% 0 5%;
+	display: none;
+}
+
+#botones {
+	grid-row: 4/5;
+	display: flex;
+	justify-content: center;
+	margin: 0 5% 0 5%;
+	padding: 1rem 0 1rem 0;
+}
+
+
+
+
+
+/* Other elements styles. */
+h1 {
+	font-size: 2.3rem;
+}
+
+h2 {
+	font-size: 1.8rem;
+}
+
+button {
+	background-color: var(--azul);
+	color: var(--resaltar);
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	font-size: 1.1rem;
+	cursor: pointer;
+	width: 100%;
+}
+
+button:hover {
+	background-color: var(--resaltar);
+	color: var(--azul);
+}
+
+button + button {
+	margin-left: 1rem;
+}
+
+#cancelar {
+	background-color: var(--rojo);
+	color: var(--resaltar);
+}
+
+#cancelar:hover {
+	background-color: var(--resaltar);
+	color: var(--rojo);
+}
+
+#guardar, #cancelar, #modificar {
+	display: none;
+}
+
+#instrucciones p {
+	padding-top: 16px;
+	line-height: 1.4rem;
+}
+
+#instrucciones b {
+	color: var(--azul);
+}
+
+#modificar, #guardar {
+	margin-left: 0;
+}
+
+#modificar {
+	background-color: var(--auxiliar);
+	color: var(--resaltar);
+}
+
+#modificar:hover {
+	background-color: var(--resaltar);
+	color: var(--auxiliar);
+}
