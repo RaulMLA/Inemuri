@@ -57,21 +57,21 @@ function calculateDistance() {
 
 
 // Función que establece el patrón de vibración dependiendo de la distancia.
-function vibrationPattern(codigo) {
-	let repeticiones;
+function vibrationPattern(code) {
+	let repetitions;
 
 	// Patrones de repetición de vibración.
-	if (codigo == 0) {
-		repeticiones = [150, 1000, 150, 1000, 150, 1000, 150, 1000];
-	} else if (codigo == 1) {
-		repeticiones = [150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300];
-	} else if (codigo == 2) {
-		repeticiones = [150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50];
-	} else if (codigo == 3) {
-		repeticiones = 5000;
+	if (code == 0) {
+		repetitions = [150, 1000, 150, 1000, 150, 1000, 150, 1000];
+	} else if (code == 1) {
+		repetitions = [150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300, 150, 300];
+	} else if (code == 2) {
+		repetitions = [150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50];
+	} else if (code == 3) {
+		repetitions = 5000;
 	}
 
-	window.navigator.vibrate(repeticiones);
+	window.navigator.vibrate(repetitions);
 }
 
 
@@ -185,7 +185,7 @@ function modifyLocation() {
 function comenzar() {
 	// Ocultamos el botón de comenzar y mostramos los de guardar y cancelar y el mapa.
 	document.getElementById("comenzar").style.display = "none";
-	document.getElementById("instrucciones").style.display = "none";
+	document.getElementById("instructions").style.display = "none";
 	document.getElementById("info").style.display = "flex";
 	document.getElementById("map_display").style.display = "block";
 	document.getElementById("guardar").style.display = "block";

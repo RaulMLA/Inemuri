@@ -45,7 +45,7 @@ body {
 	align-items: center;
 }
 
-#instrucciones {
+#instructions {
 	grid-row: 2/4;
 	font-size: 1rem;
 	display: flex;
@@ -74,7 +74,7 @@ body {
 	display: none;
 }
 
-#botones {
+#buttons {
 	grid-row: 4/5;
 	display: flex;
 	justify-content: center;
@@ -129,12 +129,12 @@ button + button {
 	display: none;
 }
 
-#instrucciones p {
+#instructions p {
 	padding-top: 16px;
 	line-height: 1.4rem;
 }
 
-#instrucciones b {
+#instructions b {
 	color: var(--azul);
 }
 
