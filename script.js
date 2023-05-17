@@ -4,8 +4,11 @@ let circle_1, circle_2, circle_3;
 let route;
 let active = false;
 
+// Circle radius.
+const radius1 = 250, radius2 = 500, radius3 = 1000, radius4 = 2000;
 
-// Icono rojo para el marcador del usuario.
+
+// Red icon for user marker.
 var redIcon = new L.Icon({
 	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
 	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -15,7 +18,7 @@ var redIcon = new L.Icon({
 	shadowSize: [41, 41]
 });
 
-// Icono verde para el marcador del destino.
+// Green icon for destination marker.
 var greenIcon = new L.Icon({
 	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
 	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -26,41 +29,41 @@ var greenIcon = new L.Icon({
 });
 
 
-// Función que comprueba la distancia entre el usuario y el destino.
+// Function that checks the distance between the user and the destination.
 function checkCoincidence() {
 	let distance = calculateDistance();
 
-	if (distance < 50) {
+	if (distance < radius1) {
 		vibrationPattern(3);
-	} else if (distance < 150) {
+	} else if (distance < radius2) {
 		vibrationPattern(2);
-	} else if (distance < 500) {
+	} else if (distance < radius2) {
 		vibrationPattern(1);
-	} else if (distance < 1000) {
+	} else if (distance < radius4) {
 		vibrationPattern(0);
 	}
 }
 
 
-// Función que calcula la distancia entre el usuario y el destino.
+// Function that calculates the distance between the user and the destination.
 function calculateDistance() {
-	// Cálculo de la distancia entre el usuario y el destino.
+	// Distance calculation between the user and the destination.
 	let lat_difference = Math.abs(marker_lat - user_lat) * 100000;
 	let long_difference = Math.abs(marker_long - user_long) * 100000;
 	let distance = Math.sqrt(Math.pow(lat_difference, 2) + Math.pow(long_difference, 2));
 
-	// Actualización distancia en el cuadro de información.
-	document.getElementById("info").innerHTML = "Estás a <b>&nbsp;" + distance.toFixed(0) + "&nbsp;metros</b>&nbsp;de tu destino";
+	// Distance update in the information box.
+	document.getElementById("info").innerHTML = "You are <b>&nbsp;" + distance.toFixed(0) + "&nbsp;meters</b>&nbsp;from destination";
 
 	return distance;
 }
 
 
-// Función que establece el patrón de vibración dependiendo de la distancia.
+// Function that sets the vibration pattern depending on the distance.
 function vibrationPattern(code) {
 	let repetitions;
 
-	// Patrones de repetición de vibración.
+	// Vibrations patterns for the different distances.
 	if (code == 0) {
 		repetitions = [150, 1000, 150, 1000, 150, 1000, 150, 1000];
 	} else if (code == 1) {
@@ -75,36 +78,36 @@ function vibrationPattern(code) {
 }
 
 
-// Función que dibuja radios de 500, 150 y 50 metros alrededor del destino.
+// Function that draws the different circles around the destination.
 function drawCircles() {
-	// Eliminación de los radios anteriores.
+	// Old circles removal.
 	if (circle_1 || circle_2 || circle_3) {
 		mymap.removeLayer(circle_1);
 		mymap.removeLayer(circle_2);
 		mymap.removeLayer(circle_3);
 	}
 
-	// Creación de los nuevos radios.
-	circle_3 = L.circle([temp_lat, temp_long], 500).addTo(mymap);
-	circle_2 = L.circle([temp_lat, temp_long], 150).setStyle({color: 'yellow'}).addTo(mymap);
-	circle_1 = L.circle([temp_lat, temp_long], 50).setStyle({color: 'red'}).addTo(mymap);
+	// New circles creation.
+	circle_3 = L.circle([temp_lat, temp_long], radius3).addTo(mymap);
+	circle_2 = L.circle([temp_lat, temp_long], radius2).setStyle({color: 'yellow'}).addTo(mymap);
+	circle_1 = L.circle([temp_lat, temp_long], radius1).setStyle({color: 'red'}).addTo(mymap);
 }
 
 
-// Función que establece el marcador del destino.
+// Function that sets the destination marker.
 function setMarker(e) {
-	// Sólo podemos modificar el marcador si la aplicación no está activa.
+	// We can only modify the marker if the application is not active.
 	if (!active) {
-		// Variables de latitud y longitud temporal.
+		// Latitude and longitude temporary variables.
 		temp_lat = e.latlng.lat;
 		temp_long = e.latlng.lng;
 
-		// Eliminación del marcador anterior.
+		// Old marker removal.
 		if (marker) {
 			mymap.removeLayer(marker);
 		}
 
-		// Creación del nuevo marcador.
+		// New marker creation.
 		marker = L.marker([temp_lat, temp_long], {draggable: 'true', icon: greenIcon});
 
 		marker.on('dragend', function (event) {
@@ -117,41 +120,41 @@ function setMarker(e) {
 			}
 		});
 
-		// Añadimos el marcador al mapa y dibujamos los radios.
+		// We add the marker to the map and draw the circles.
 		mymap.addLayer(marker);
 		drawCircles();
 	}
 }
 
 
-// Función que se ejecuta al pulsar el botón de guardar.
-function guardar() {
+// Function that is executed when the save button is pressed.
+function save() {
 
 	if (marker) {
-		// Establecemos la aplicación como activa.
+		// We set the application as active.
 		active = true;
 
-		// Establecemos las variables de latitud y longitud del marcador.
+		// We set the latitude and longitude variables of the marker.
 		marker_lat = temp_lat;
 		marker_long = temp_long;
 
-		// Ocultamos los botones de guardar y cancelar y mostramos el de modificar.
-		document.getElementById("guardar").style.display = "none";
-		document.getElementById("cancelar").style.display = "none";
-		document.getElementById("modificar").style.display = "block";
-		document.getElementById("info").innerHTML = "Calculando la distancia...";
+		// We hide the save and cancel buttons and show the modify one.
+		document.getElementById("save").style.display = "none";
+		document.getElementById("cancel").style.display = "none";
+		document.getElementById("modify").style.display = "block";
+		document.getElementById("info").innerHTML = "Calculating distance...";
 
-		// Desactivamos el drag and drop del marcador temporalmente.
+		// We desactivate the drag and drop of the marker temporarily.
 		marker.dragging.disable();
 	} else {
-		alert("Selecciona una ubicación para continuar.");
+		alert("Select a location to continue.")
 	}
 }
 
 
-// Función que se ejecuta al pulsar el botón de cancelar.
-function cancelar() {
-	// Eliminamos el marcador y los radios.
+// Function that is executed when the cancel button is pressed.
+function cancel() {
+	// We remove the marker and the circles.
 	mymap.removeLayer(marker);
 	marker = null;
 	temp_lat, temp_long = null;
@@ -162,36 +165,36 @@ function cancelar() {
 }
 
 
-// Función que se ejecuta al pulsar el botón de modificar.
+// Function that is executed when the modify button is pressed.
 function modifyLocation() {
-	// Establecemos la aplicación como inactiva.
+	// We set the application as inactive.
 	active = false;
 
-	// Mostramos los botones de guardar y cancelar y ocultamos el de modificar.
+	// We show the save and cancel buttons and hide the modify one.
 	document.getElementById("info").innerHTML = "Selecciona tu destino";
-	document.getElementById("modificar").style.display = "none";
-	document.getElementById("guardar").style.display = "block";
-	document.getElementById("cancelar").style.display = "block";
+	document.getElementById("modify").style.display = "none";
+	document.getElementById("save").style.display = "block";
+	document.getElementById("cancel").style.display = "block";
 
-	// Activamos el drag and drop del marcador.
+	// We activate the drag and drop of the marker.
 	marker.dragging.enable();
 
-	// Paramos la vibración del dispositivo.
+	// Stop the vibration of the device.
 	navigator.vibrate(0);
 }
 
 
-// Función que se ejecuta al pulsar el botón de comenzar.
-function comenzar() {
-	// Ocultamos el botón de comenzar y mostramos los de guardar y cancelar y el mapa.
-	document.getElementById("comenzar").style.display = "none";
+// Function that is executed when the start button is pressed.
+function start() {
+	// We hide the start button and show the save and cancel ones and the map.
+	document.getElementById("start").style.display = "none";
 	document.getElementById("instructions").style.display = "none";
 	document.getElementById("info").style.display = "flex";
 	document.getElementById("map_display").style.display = "block";
-	document.getElementById("guardar").style.display = "block";
-	document.getElementById("cancelar").style.display = "block";
+	document.getElementById("save").style.display = "block";
+	document.getElementById("cancel").style.display = "block";
 
-	// Creación del mapa.
+	// Map creation.
 	mymap = L.map('map_display').setView([40.332, -3.756], 12);
 
 	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -199,18 +202,18 @@ function comenzar() {
 		maxZoom: 18
 	}).addTo(mymap);
 
-	// Comprobamos si el navegador soporta geolocalización.
+	// We check if the browser supports geolocation.
 	if ('geolocation' in navigator) {
 
-		// Establecemos el marcador del usuario al pulsar sobre el mapa.
+		// We set the user marker when the user clicks on the map.
 		mymap.on('click', setMarker);
 		
-		// Acciones de los botones.
-		document.getElementById("cancelar").addEventListener("click", cancelar);
-		document.getElementById("guardar").addEventListener("click", guardar);
-		document.getElementById("modificar").addEventListener("click", modifyLocation);
+		// Buttons actions.
+		document.getElementById("cancel").addEventListener("click", cancel);
+		document.getElementById("save").addEventListener("click", save);
+		document.getElementById("modify").addEventListener("click", modifyLocation);
 	
-		// Obtenemos la posición del usuario constantemente.
+		// We get the user position constantly.
 		var watchId = navigator.geolocation.watchPosition((position) => {
 	
 			if (user_marker) {
@@ -220,17 +223,20 @@ function comenzar() {
 			user_lat = position.coords.latitude;
 			user_long = position.coords.longitude;
 			user_marker = L.marker([user_lat, user_long], {icon: redIcon}).addTo(mymap);
+
+			// We change the map view to the user position.
+			mymap.setView([user_lat, user_long], 13);
 	
-			// Si la aplicación está activa, comprobamos la coincidencia y calculamos la distancia.
+			// If the application is active, we check the coincidence and calculate the distance.
 			if (active) {
 				checkCoincidence();
 				calculateDistance();
 			}
 		});
 	} else {
-		alert("Tu navegador no soporta geolocalización.");
+		alert("Your browser does not support geolocation.");
 	}
 }
 
-// Ejecución de la aplicación al pulsar el botón de comenzar.
-document.getElementById("comenzar").addEventListener("click", comenzar);
+// Application execution when the start button is pressed.
+document.getElementById("start").addEventListener("click", start);

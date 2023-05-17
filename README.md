@@ -9,7 +9,7 @@ Inemuri App is a web mobile application that allows you to set a destination loc
 * [Features](#features)
 
 # General info
-It is important to note that the app has been designed and optimized for Android devices. While it may be possible to use the app on an iOS device, some of the web APIs used in the app may not work properly, which could lead to a degraded user experience or even prevent the app from working at all. Therefore, we strongly recommend that you use an Android device to ensure the best possible experience.
+It is important to note that the app has been designed and optimized for Android devices. While it may be possible to use the app on an iOS device, some of the web APIs used in the app may not work properly, which could lead to a degraded user experience or even prevent the app from working at all. Therefore, it is strongly recommended that you use an Android device to ensure the best possible experience.
 
 Additionally, please be aware that the app requires certain permissions to function properly, such as access to location data. It is important that you grant these permissions when prompted to do so in order to use the app correctly.
 
@@ -50,7 +50,7 @@ In addition to the above behaviors, the implemented code includes the following 
 - Displaying the application when the "Start" button is pressed.
 - Allowing the user to set the destination location on the map with a single touch or by dragging and dropping.
 - Displaying the user's location in red and the destination location in green on the map.
-- Showing radii of 50, 150, and 500 meters around the destination location.
+- Showing different radii around the destination location.
 - Allowing the user to cancel the selected destination location by pressing the "Cancel" button.
 - Starting the application by pressing the "Save" button.
 - Displaying the distance to the destination location in meters during application runtime.
@@ -58,3 +58,5 @@ In addition to the above behaviors, the implemented code includes the following 
 - Pausing the application and allowing the user to modify the destination location by pressing the "Modify" button.
 
 In addition to the features mentioned above, the application has a very intuitive and user-friendly interface. The user can start using the application without the need to read any instructions. The application has a simple and clean design with contrasting colors that facilitate the reading of the information displayed on the screen. It is also fully adapted to Android mobile devices.
+
+It is planned to keep it updated and add new features in the future.

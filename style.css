@@ -4,12 +4,12 @@
 
 /* Application colors. */
 :root {
-	--azul: #265cff;
-	--rojo: #ff2828;
-	--primario: #1e1e1e;
-	--secundario: #232323;
+	--blue: #265cff;
+	--red: #ff2828;
+	--primary: #1e1e1e;
+	--secondary: #232323;
 	--auxiliar: #4d4d4d;
-	--resaltar: #ffffff;
+	--highlight: #ffffff;
 }
 
 * {
@@ -19,8 +19,8 @@
 }
 
 html {
-	background-color: var(--primario);
-	color: var(--resaltar);
+	background-color: var(--primary);
+	color: var(--highlight);
 	font-family: 'Inter', sans-serif;
 	height: 100%;
 }
@@ -96,8 +96,8 @@ h2 {
 }
 
 button {
-	background-color: var(--azul);
-	color: var(--resaltar);
+	background-color: var(--blue);
+	color: var(--highlight);
 	border: none;
 	border-radius: 0.5rem;
 	padding: 0.5rem 1rem;
@@ -107,25 +107,25 @@ button {
 }
 
 button:hover {
-	background-color: var(--resaltar);
-	color: var(--azul);
+	background-color: var(--highlight);
+	color: var(--blue);
 }
 
 button + button {
 	margin-left: 1rem;
 }
 
-#cancelar {
-	background-color: var(--rojo);
-	color: var(--resaltar);
+#cancel {
+	background-color: var(--red);
+	color: var(--highlight);
 }
 
-#cancelar:hover {
-	background-color: var(--resaltar);
-	color: var(--rojo);
+#cancel:hover {
+	background-color: var(--highlight);
+	color: var(--red);
 }
 
-#guardar, #cancelar, #modificar {
+#save, #cancel, #modify {
 	display: none;
 }
 
@@ -135,19 +135,19 @@ button + button {
 }
 
 #instructions b {
-	color: var(--azul);
+	color: var(--blue);
 }
 
-#modificar, #guardar {
+#modify, #save {
 	margin-left: 0;
 }
 
-#modificar {
+#modify {
 	background-color: var(--auxiliar);
-	color: var(--resaltar);
+	color: var(--highlight);
 }
 
-#modificar:hover {
-	background-color: var(--resaltar);
+#modify:hover {
+	background-color: var(--highlight);
 	color: var(--auxiliar);
 }
